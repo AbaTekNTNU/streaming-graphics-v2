@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import { AbaTekStreamingEvent } from "../../../types";
 import { AbatekMessage } from "../events";
-import { FiriLogoGender, hideLogo, setLogoGender, showLogo } from "./reducer";
+import { FiriLogoGender, hideLogo, showLogo } from "./reducer";
 
 enum FiriLogoMessage {
   LOGO_VISIBILITY = "logo.visibility",
@@ -30,20 +30,6 @@ export const handleLogoVisibilityState = (
         doHideLogo(dispatch);
       }
       break;
-    case FiriLogoMessage.USE_MEN_LOGO:
-      if ((event as any).payload.value) {
-        dispatch(
-          setLogoGender({
-            gender: FiriLogoGender.MEN,
-          })
-        );
-      } else {
-        dispatch(
-          setLogoGender({
-            gender: FiriLogoGender.WOMEN,
-          })
-        );
-      }
   }
 };
 

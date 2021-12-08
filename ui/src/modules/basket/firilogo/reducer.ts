@@ -7,16 +7,10 @@ export enum FiriLogoGender {
 
 export type FiriLogoState = {
   showLogo: boolean;
-  gender: FiriLogoGender;
-};
-
-export type SetFiriLogoGenderRequest = {
-  gender: FiriLogoGender;
 };
 
 const initialState: FiriLogoState = {
-  showLogo: false,
-  gender: FiriLogoGender.WOMEN,
+  showLogo: true,
 };
 
 const firiLogoReducer = createSlice({
@@ -31,16 +25,9 @@ const firiLogoReducer = createSlice({
       state.showLogo = true;
       return state;
     },
-    setLogoGender: (
-      state: FiriLogoState,
-      action: PayloadAction<SetFiriLogoGenderRequest>
-    ) => {
-      state.gender = action.payload.gender;
-      return state;
-    },
   },
 });
 
-export const { hideLogo, showLogo, setLogoGender } = firiLogoReducer.actions;
+export const { hideLogo, showLogo } = firiLogoReducer.actions;
 
 export default firiLogoReducer.reducer;

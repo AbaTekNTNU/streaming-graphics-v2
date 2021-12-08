@@ -17,11 +17,6 @@
       "eventName": "logo.visibility"
     },
     {
-      "type": "firi_logo",
-      "name": "Use man logo",
-      "eventName": "logo.gender.useMen"
-    },
-    {
       "type": "game_information",
       "name": "Show inital game information",
       "eventName": "game.initial.summary"

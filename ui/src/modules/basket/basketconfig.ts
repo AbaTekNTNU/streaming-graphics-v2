@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export enum BasketSkin {
-  FIRI,
+  FIRI_MEN,
+  FIRI_WOMEN,
   NTNUI,
 }
 
@@ -10,7 +11,7 @@ type BasketConfig = {
 };
 
 const config: BasketConfig = {
-  skin: BasketSkin.NTNUI,
+  skin: BasketSkin.FIRI_WOMEN,
 };
 
 const configReducer = createSlice({

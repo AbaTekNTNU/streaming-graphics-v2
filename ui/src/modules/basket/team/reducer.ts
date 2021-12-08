@@ -19,18 +19,18 @@ type TeamState = {
 };
 const initialState: TeamState = {
   home: {
-    name: "Nerds",
-    logo: "https://ntnui.no/basket/wp-content/uploads/sites/165/2020/05/cropped-NTNUI-favicon.png",
+    name: "",
+    logo: "",
     players: [],
     coaches: [],
   },
   away: {
-    name: "Geezes",
-    logo: "https://ntnui.no/basket/wp-content/uploads/sites/165/2020/05/cropped-NTNUI-favicon.png",
+    name: "",
+    logo: "",
     players: [],
     coaches: [],
   },
-  showGameSummary: false,
+  showGameSummary: true,
   showTeamPresentation: false,
 };
 

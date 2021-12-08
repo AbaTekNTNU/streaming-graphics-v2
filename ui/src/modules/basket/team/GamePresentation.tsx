@@ -5,6 +5,7 @@ import { FiriLogoGender } from "../firilogo/reducer";
 import styles from "./GamePresentation.module.css";
 import firiLogoMen from "./assets/top_logo_men.png";
 import firiLogoWomen from "./assets/top_logo_women.png";
+import { getLogoBySkin } from "../firilogo/utils";
 
 type TeamContainerProps = {
   name: string;
@@ -23,16 +24,13 @@ const TeamContainer: React.FC<TeamContainerProps> = ({ name, logo }) => {
 
 const GamePresentation: React.FC = () => {
   const teams = useSelector((state: RootState) => state.game);
-
-  const logoGender = useSelector((state: RootState) => state.firiLogo.gender);
-  const firiLogoToUse =
-    logoGender === FiriLogoGender.MEN ? firiLogoMen : firiLogoWomen;
+  const skin = useSelector((state: RootState) => state.config.skin);
 
   return (
     <div className={styles.container}>
       <div className={styles.topDivider}></div>
       <div className={styles.logoWrapper}>
-        <img className={styles.logo} src={firiLogoToUse} />
+        <img className={styles.logo} src={getLogoBySkin(skin)} />
       </div>
       <div className={styles.midContainer}>
         <TeamContainer name={teams.home.name} logo={teams.home.logo} />

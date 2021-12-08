@@ -5,6 +5,7 @@ import { RootState } from "../../../../store/store";
 import { FiriLogoGender } from "../../firilogo/reducer";
 import firiLogoMen from "./../assets/top_logo_men.png";
 import firiLogoWomen from "./../assets/top_logo_women.png";
+import { getLogoBySkin } from "../../firilogo/utils";
 
 const baseUrl = "http://localhost:4000/team";
 
@@ -92,9 +93,7 @@ const TeamComponent: React.FC<TeamComponentProps> = ({ team, name }) => {
 };
 
 const TeamPresentationComponent: React.FC<TeamPresentationProps> = ({}) => {
-  const logoGender = useSelector((state: RootState) => state.firiLogo.gender);
-  const firiLogoToUse =
-    logoGender === FiriLogoGender.MEN ? firiLogoMen : firiLogoWomen;
+  const skin = useSelector((state: RootState) => state.config.skin);
 
   const [teamData, setTeamData] = useState<TeamsState | null>(null);
 
@@ -114,7 +113,7 @@ const TeamPresentationComponent: React.FC<TeamPresentationProps> = ({}) => {
     <div className={styles.container}>
       <div className={styles.topDivider}></div>
       <div className={styles.logoWrapper}>
-        <img className={styles.logo} src={firiLogoToUse} />
+        <img className={styles.logo} src={getLogoBySkin(skin)} />
       </div>
       <div className={styles.midContainer}>
         <TeamComponent team={teamData.home} name={"Midtbyen"} />
