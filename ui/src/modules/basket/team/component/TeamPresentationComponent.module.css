@@ -1,6 +1,6 @@
 .container {
   width: 1380px;
-  height: 700px;
+  height: fit-content;
   position: absolute;
   background-color: white;
   top: 50%;
@@ -29,10 +29,11 @@
 .midContainer {
   width: 100%;
   background-color: white;
-  height: 560px;
+  min-height: 560px;
+  padding-bottom: 8px;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: start;
 }
 
 .vs {
@@ -67,7 +68,7 @@
 
 .basketNorgeContainer {
   position: absolute;
-  bottom: -15px;
+  bottom: -52px;
   right: 0;
   background-color: #e2e3e4;
   padding: 15px;
@@ -80,7 +81,7 @@
 .teamPrsWrapper {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 40%;
 }
 
 .teamNamePrsWrapper {
@@ -89,26 +90,55 @@
 
 .playerText {
   display: flex;
+  border-bottom: 1px solid #627cb9;
 }
 
 .playerTextInfo {
   background-color: #201d7c;
   color: white;
   font-weight: bold;
-  padding: 10px;
-  margin: 2px;
+  padding: 6px;
+  margin-right: 2px;
   width: 100%;
-  font-size: 12px;
+  font-size: 17px;
 }
 
 .playerTextInfoNumber {
   background-color: #201d7c;
   color: white;
   font-weight: bold;
-  padding: 10px;
-  margin: 2px;
+  padding: 6px;
+  margin-right: 2px;
   width: 20%;
-  font-size: 12px;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.playerTextInfoAge {
+  background-color: #201d7c;
+  color: white;
+  font-weight: bold;
+  padding: 6px;
+  margin-right: 2px;
+  width: 25%;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playerTextInfoHeight {
+  background-color: #201d7c;
+  color: white;
+  font-weight: bold;
+  padding: 6px;
+  width: 28%;
+  font-size: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .teamText {
@@ -120,18 +150,60 @@
   background-color: #474aee;
   color: white;
   font-weight: bold;
-  padding: 10px;
-  margin: 2px;
+  padding: 6px;
+  margin-right: 2px;
   width: 100%;
-  font-size: 12px;
+  font-size: 20px;
+  text-align: center; /* I think this should be left -- however specs says middle :/// */
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .teamTextInfoNumber {
   background-color: #474aee;
   color: white;
   font-weight: bold;
-  padding: 10px;
-  margin: 2px;
+  padding: 6px;
+  margin-right: 2px;
   width: 20%;
-  font-size: 12px;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.teamTextInfoAge {
+  background-color: #474aee;
+  color: white;
+  font-weight: bold;
+  padding: 6px;
+  margin-right: 2px;
+  width: 25%;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.teamTextInfoHeight {
+  background-color: #474aee;
+  color: white;
+  font-weight: bold;
+  padding: 6px;
+  width: 28%;
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.teamColumnName {
+  display: flex;
+  justify-content: center;
+}
+
+.teamColumnName h3 {
+  margin: 0.5em;
+  color: #201d7c;
+  font-size: 30px;
 }

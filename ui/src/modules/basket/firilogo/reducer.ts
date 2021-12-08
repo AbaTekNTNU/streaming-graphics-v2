@@ -10,7 +10,7 @@ export type FiriLogoState = {
 };
 
 const initialState: FiriLogoState = {
-  showLogo: true,
+  showLogo: false,
 };
 
 const firiLogoReducer = createSlice({

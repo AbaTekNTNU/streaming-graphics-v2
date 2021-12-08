@@ -1,11 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-import { FiriLogoGender } from "../firilogo/reducer";
 import styles from "./GamePresentation.module.css";
-import firiLogoMen from "./assets/top_logo_men.png";
-import firiLogoWomen from "./assets/top_logo_women.png";
-import { getLogoBySkin } from "../firilogo/utils";
+import { getSimpleLogoBySkin } from "../firilogo/utils";
 
 type TeamContainerProps = {
   name: string;
@@ -30,7 +27,7 @@ const GamePresentation: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.topDivider}></div>
       <div className={styles.logoWrapper}>
-        <img className={styles.logo} src={getLogoBySkin(skin)} />
+        <img className={styles.logo} src={getSimpleLogoBySkin(skin)} />
       </div>
       <div className={styles.midContainer}>
         <TeamContainer name={teams.home.name} logo={teams.home.logo} />

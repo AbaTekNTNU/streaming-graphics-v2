@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "./TeamPresentationComponent.module.css";
 import { RootState } from "../../../../store/store";
-import { FiriLogoGender } from "../../firilogo/reducer";
-import firiLogoMen from "./../assets/top_logo_men.png";
-import firiLogoWomen from "./../assets/top_logo_women.png";
-import { getLogoBySkin } from "../../firilogo/utils";
+import { getSimpleLogoBySkin } from "../../firilogo/utils";
 
 const baseUrl = "http://localhost:4000/team";
 
@@ -22,6 +19,7 @@ export type Player = {
   shirtNumber: number | null;
   isCaptain: boolean;
   personId: number;
+  birthDate: String | null;
 };
 
 export type TeamData = {
@@ -45,17 +43,47 @@ type PlayerProps = {
   player: Player;
 };
 
+const getAge = (birthDate: Date): number => {
+  var ageDifMs = Date.now() - birthDate.getTime();
+  var ageDate = new Date(ageDifMs); // miliseconds from epoch
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+};
+
+const orderTeamData = (teams: TeamsState): TeamsState => {
+  const compare = (a: Player, b: Player) => {
+    if (a.shirtNumber === null) {
+      if (b.shirtNumber === null) {
+        return -1;
+      } else {
+        return 1;
+      }
+    } else if (b.shirtNumber === null) {
+      return -1;
+    }
+
+    return a.shirtNumber - b.shirtNumber;
+  };
+
+  teams.home.players.sort(compare);
+  teams.away.players.sort(compare);
+  return teams;
+};
+
 const Player: React.FC<PlayerProps> = ({ player }) => {
   return (
     <div className={styles.playerText}>
       <div className={styles.playerTextInfoNumber}>{player.shirtNumber} </div>
       <div className={styles.playerTextInfo}>
         <span>
-          {player.firstName}
-          {player.lastName}
+          {player.firstName} {player.lastName}
         </span>
       </div>
-      <div className={styles.playerTextInfo}>{player.height}</div>
+      <div className={styles.playerTextInfoAge}>
+        {player.birthDate !== null
+          ? getAge(new Date(player.birthDate as string))
+          : null}
+      </div>
+      <div className={styles.playerTextInfoHeight}>{player.height}</div>
     </div>
   );
 };
@@ -66,12 +94,30 @@ type TeamHeaderProps = {
 
 const TeamHeader: React.FC<TeamHeaderProps> = ({ name }) => {
   return (
-    <div className={styles.teamText}>
-      <div className={styles.teamTextInfoNumber}>Nr</div>
-      <div className={styles.teamTextInfo}>
-        <span>{name}</span>
+    <div>
+      <div className={styles.teamColumnName}>
+        <h3>{name}</h3>
       </div>
-      <div className={styles.teamTextInfo}></div>
+      <div className={styles.teamNamePrsWrapper}>
+        <div className={styles.teamText}>
+          <div className={styles.teamTextInfoNumber}>Nr</div>
+          <div className={styles.teamTextInfo}>
+            <span>
+              <b>Navn</b>
+            </span>
+          </div>
+          <div className={styles.teamTextInfoAge}>
+            <span>
+              <b>Alder</b>
+            </span>
+          </div>
+          <div className={styles.teamTextInfoHeight}>
+            <span>
+              <b>Høyde</b>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -79,7 +125,7 @@ const TeamHeader: React.FC<TeamHeaderProps> = ({ name }) => {
 const TeamComponent: React.FC<TeamComponentProps> = ({ team, name }) => {
   return (
     <div className={styles.teamPrsWrapper}>
-      <div className={styles.teamNamePrsWrapper}>
+      <div>
         <TeamHeader name={name} />
       </div>
 
@@ -101,7 +147,7 @@ const TeamPresentationComponent: React.FC<TeamPresentationProps> = ({}) => {
     fetch(baseUrl)
       .then((r) => r.json())
       .then((r) => {
-        setTeamData(r.teams);
+        setTeamData(orderTeamData(r.teams));
       });
   }, []);
 
@@ -113,7 +159,7 @@ const TeamPresentationComponent: React.FC<TeamPresentationProps> = ({}) => {
     <div className={styles.container}>
       <div className={styles.topDivider}></div>
       <div className={styles.logoWrapper}>
-        <img className={styles.logo} src={getLogoBySkin(skin)} />
+        <img className={styles.logo} src={getSimpleLogoBySkin(skin)} />
       </div>
       <div className={styles.midContainer}>
         <TeamComponent team={teamData.home} name={"Midtbyen"} />

@@ -30,8 +30,8 @@ const initialState: TeamState = {
     players: [],
     coaches: [],
   },
-  showGameSummary: true,
-  showTeamPresentation: false,
+  showGameSummary: false,
+  showTeamPresentation: true,
 };
 
 const teamReducer = createSlice({

@@ -49,7 +49,7 @@ const initialState: ScoreState = {
     secondsRemaining: 600,
     running: false,
   },
-  scoreVisible: true,
+  scoreVisible: false,
   clockVisible: true,
 };
 
