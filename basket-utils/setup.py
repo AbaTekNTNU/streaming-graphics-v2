@@ -5,7 +5,7 @@ from . import config
 
 numberOfEventsToCapture = 100
 
-baseUrlToPushResults = "http://localhost:8000/team"
+baseUrlToPushResults = "%s/team" % (config.basketServiceUrl)
 
 supKey = config.subKey
 

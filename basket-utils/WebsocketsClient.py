@@ -5,7 +5,7 @@ import uuid
 import requests
 import json
 
-baseUrl = "http://localhost:8000/message"
+baseUrl = "%s/message" % (config.basketServiceUrl)
 
 
 class SubscribeHandler(SubscribeCallback):

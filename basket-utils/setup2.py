@@ -1,10 +1,11 @@
 import json
 import requests
+from . import config
 
 response = json.load(open("setupCach.json", "r"))
 
 
-baseUrlToPushResults = "http://localhost:8000/team"
+baseUrlToPushResults = "%s/team" % (config.basketServiceUrl)
 
 
 if (response[0][0]['message']['EventType'] == 0):
