@@ -1,16 +1,15 @@
 import requests
 import json
 import uuid
+from . import config
 
-# subKey = "sub-c-fa031a92-9639-11e8-8ef1-fea37cdf89b9"
-# matchId = "7380067"
 numberOfEventsToCapture = 100
 
 baseUrlToPushResults = "http://localhost:8000/team"
 
-supKey = "sub-c-fa031a92-9639-11e8-8ef1-fea37cdf89b9"
+supKey = config.subKey
 
-matchId = "7450472"
+matchId = config.matchId
 
 fetchUrl = "https://ps15.pubnub.com/v2/history/sub-key/" + str(supKey) + "/channel/match%3A" + str(
     matchId)+"%3Aall?include_token=true&count=" + str(numberOfEventsToCapture) + "&string_message_token=true&reverse=true&uuid="+str(uuid.uuid4())
