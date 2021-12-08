@@ -1,7 +1,7 @@
 import requests
 import json
 import uuid
-from . import config
+import config
 
 numberOfEventsToCapture = 100
 

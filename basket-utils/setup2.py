@@ -1,6 +1,6 @@
 import json
 import requests
-from . import config
+import config
 
 response = json.load(open("setupCach.json", "r"))
 

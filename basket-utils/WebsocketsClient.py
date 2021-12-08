@@ -1,6 +1,6 @@
 from pubnub.pubnub import PubNub, SubscribeCallback
 from pubnub.pnconfiguration import PNConfiguration
-from . import config
+import config
 import uuid
 import requests
 import json
