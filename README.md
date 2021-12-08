@@ -30,5 +30,6 @@ Ipad controlleren er en enkel frontend som brukes for å endre hvilke komponente
 
 ### ui
 
-Språk: TS, react\
+Språk: TS: react\
 Port: 3000\
+Dette er komponenten som brukes for å lage overlays i OBS. Applikasjonen holder på state om alle grafikkelementene og disse må oppdateres via BFF-en for å endre hva som vises.
