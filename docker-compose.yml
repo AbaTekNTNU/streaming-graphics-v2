@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  basket-service:
+    build: basket-service/
+    ports: 
+     - "8000:8000"
+
+  basket-utils:
+    build: basket-utils/
+
+  bff:
+    build: bff/
+    ports: 
+      - "4000:4000"
+  
+  ipad-controller:
+    build: ipad-controller/
+    ports: 
+      - "3001:80"
+  
+  ui: 
+    build: ui/
+    ports: 
+      - "3000:80"
