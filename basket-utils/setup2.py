@@ -2,7 +2,7 @@ import json
 import requests
 import config
 
-response = json.load(open("setupCach.json", "r"))
+response = json.load(open("domainData/setupCach.json", "r"))
 
 
 baseUrlToPushResults = "%s/team" % (config.basketServiceUrl)
