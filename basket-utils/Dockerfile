@@ -10,4 +10,4 @@ COPY config.py config.py
 
 COPY WebsocketsClient.py WebsocketsClient.py
 
-CMD [ "python3", "WebsocketsClient.py" ]
+CMD [ "python3", "-u", "WebsocketsClient.py" ]
