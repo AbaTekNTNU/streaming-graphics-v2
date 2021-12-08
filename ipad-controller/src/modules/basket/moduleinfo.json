@@ -1,0 +1,35 @@
+{
+  "url": "http://localhost:4000/controller",
+  "eventGroups": [
+    {
+      "type": "score",
+      "name": "Show Score",
+      "eventName": "score_visibility"
+    },
+    {
+      "type": "score",
+      "name": "Show Clock",
+      "eventName": "clock_visibility"
+    },
+    {
+      "type": "firi_logo",
+      "name": "Show logo",
+      "eventName": "logo.visibility"
+    },
+    {
+      "type": "firi_logo",
+      "name": "Use man logo",
+      "eventName": "logo.gender.useMen"
+    },
+    {
+      "type": "game_information",
+      "name": "Show inital game information",
+      "eventName": "game.initial.summary"
+    },
+    {
+      "type": "game_information",
+      "name": "Show team presentation",
+      "eventName": "team.information"
+    }
+  ]
+}

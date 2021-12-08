@@ -1,0 +1,78 @@
+.container {
+  width: 1380px;
+  height: 700px;
+  position: absolute;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.topDivider {
+  height: 20px;
+  width: 100%;
+  background-color: #201d7c;
+}
+
+.logoWrapper {
+  width: 100%;
+  height: 120px;
+  background-color: #474aee;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  height: 100%;
+}
+
+.midContainer {
+  width: 100%;
+  background-color: white;
+  height: 560px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vs {
+  font-size: 72px;
+  font-weight: bold;
+}
+
+.teamContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.teamImage {
+  width: 200px;
+}
+
+.teamTitle {
+  height: fit-content;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.teamWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.basketNorgeContainer {
+  position: absolute;
+  bottom: -15px;
+  right: 0;
+  background-color: #e2e3e4;
+  padding: 15px;
+}
+
+.basketNorgeText {
+  display: block;
+}

@@ -1,0 +1,66 @@
+html {
+  background-color: white;
+}
+
+/*
+Inspired by:
+  https://stackoverflow.com/questions/54314691/creating-a-css-look-so-a-button-acts-like-a-checkbox
+*/
+
+.CheckboxButton input[type="checkbox"] {
+  display: none;
+}
+
+.CheckboxButton input[type="checkbox"] + label {
+  user-select: none;
+  color: black;
+  background-color: rgb(22, 22, 22);
+  font-size: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 20px;
+
+  border: 12px solid orange;
+  border-radius: 10px;
+}
+
+.CheckboxButton input[type="checkbox"]:checked + label {
+  color: black;
+  background-color: rgb(77, 48, 0);
+}
+
+.CheckboxButton input[type="checkbox"] + label div {
+  background-color: #999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0px 30px;
+
+  width: 200px;
+  height: 90px;
+
+  margin: 11px;
+
+  box-shadow: none;
+}
+
+.CheckboxButton input[type="checkbox"]:checked + label div {
+  padding: 0px 30px;
+
+  width: 200px;
+  height: 90px;
+
+  background-color: orange;
+}
+
+.CheckboxButton input[type="checkbox"]:active + label div,
+.CheckboxButton input[type="checkbox"]:checked:active + label div,
+.CheckboxButton input[type="checkbox"]:active + label,
+.CheckboxButton input[type="checkbox"]:checked:active + label {
+  background-color: #222;
+}
