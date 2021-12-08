@@ -1,5 +1,18 @@
 # Basket utils
 
+## Running during games - without docker
+
+1. Update subkey (has not changed yet during 2021 / 2022 season) in config.py
+1. Update matchId in config.py
+1. Make sure basket service node application (port: 8000) is running
+1. Start socket listener: `python3 WebsocketsClient.py`
+1. Make sure players information is available at NIF live page
+1. Send setup commands `python3 setup.py`
+1. Make sure game data is visible in basket service state `curl localhost:8000/state`
+1. You don't have to do anything other than stopping WebsocketsClient after game is done.
+
+## Getting started
+
 1. This package is made to gather information from NBBF and push it into our applications.
    In order to get started, add config.py with matchId (the id of the match to gather information about) and subkey (pubunb subscription key).
 
