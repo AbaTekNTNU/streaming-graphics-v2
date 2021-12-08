@@ -27,6 +27,7 @@ export type Player = {
   shirtNumber: number | null;
   isCaptain: boolean;
   personId: number;
+  birthDate: Date | null;
 };
 
 export type TeamData = {

@@ -2,6 +2,10 @@ import { AppState } from "..";
 import { NifPlayerData, NifTeamData } from "../nifTypes";
 import { Coach, Player, TeamData, TeamUpdateData } from "../types";
 
+const getDate = (brithDate: string): Date => {
+  return new Date(brithDate);
+};
+
 const formatPlayer = (player: NifPlayerData): Player => {
   return {
     firstName: player.FirstName,
@@ -10,6 +14,7 @@ const formatPlayer = (player: NifPlayerData): Player => {
     shirtNumber: player.ShirtNo,
     isCaptain: player.IsCaptain,
     personId: Number(player.Id),
+    birthDate: player.Birthday !== null ? getDate(player.Birthday) : null,
   };
 };
 
