@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import scoreReducer from "../modules/basket/score/reducer";
 import firiLogoReducer from "../modules/basket/firilogo/reducer";
 import gameReducer from "./../modules/basket/team/reducer";
+import sponsorReducer from "../modules/basket/sponsors/reducer";
 import configReducer from "../modules/basket/basketconfig";
 
 export const store = configureStore({
@@ -9,6 +10,7 @@ export const store = configureStore({
     config: configReducer,
     score: scoreReducer,
     firiLogo: firiLogoReducer,
+    sponsors: sponsorReducer,
     game: gameReducer,
   },
 });
