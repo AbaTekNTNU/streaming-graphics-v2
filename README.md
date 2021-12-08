@@ -4,7 +4,7 @@ Dette biblioteket håndterer fra og med 8. desember 2021 alt AbaTek leverer av g
 
 # Modulene
 
-### basket-backend
+### basket-service
 
 Språk: TS, express\
 Port: 8000\
