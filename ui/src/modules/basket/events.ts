@@ -2,6 +2,7 @@ import { Dispatch } from "redux";
 import { AbaTekStreamingEvent, AbaTekStreamingEventType } from "../../types";
 import { handleFiriLogoEvent } from "./firilogo/events";
 import { handleScoreEvent } from "./score/events";
+import { handleSponsorDisplayEvent } from "./sponsors/events";
 import { handleGameEvent } from "./team/events";
 
 export enum AbatekMessage {
@@ -22,6 +23,9 @@ export const handleBasketEvent = (
       break;
     case AbaTekStreamingEventType.GAME_INFORMATION:
       handleGameEvent(event, dispatch);
+      break;
+    case AbaTekStreamingEventType.SPONSOR_DISPLAY:
+      handleSponsorDisplayEvent(event, dispatch);
       break;
   }
 };

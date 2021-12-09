@@ -11,7 +11,7 @@ type BasketConfig = {
 };
 
 const config: BasketConfig = {
-  skin: BasketSkin.FIRI_WOMEN,
+  skin: BasketSkin.FIRI_MEN,
 };
 
 const configReducer = createSlice({

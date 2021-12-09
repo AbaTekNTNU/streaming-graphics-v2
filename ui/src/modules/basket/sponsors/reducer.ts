@@ -5,15 +5,24 @@ type SponsorState = {
 };
 
 const initialState: SponsorState = {
-  showSponsors: false,
+  showSponsors: true,
 };
 
 const sponsorSlice = createSlice({
   name: "sponsors",
   initialState,
-  reducers: {},
+  reducers: {
+    showSponsorDisplay: (state: SponsorState) => {
+      state = { showSponsors: true };
+      return state;
+    },
+    hideSponsorDisplay: (state: SponsorState) => {
+      state = { showSponsors: false };
+      return state;
+    },
+  },
 });
 
-export const {} = sponsorSlice.actions;
+export const { showSponsorDisplay, hideSponsorDisplay } = sponsorSlice.actions;
 
 export default sponsorSlice.reducer;
