@@ -58,6 +58,7 @@ app.post(
             type: "application",
             event: "nameOverlay.Player.Full.Update",
             player: playerStats.player,
+            team: req.params.team, // H | A
           },
         },
         MessageModule.BAKSET
