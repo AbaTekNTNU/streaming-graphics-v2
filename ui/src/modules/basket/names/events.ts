@@ -1,6 +1,11 @@
 import { Dispatch } from "redux";
 import { AbaTekStreamingEvent } from "../../../types";
 import { AbatekMessage } from "../events";
+import {
+  hideNameOverlay,
+  setPlayerFullOverlay,
+  showNameOverlay,
+} from "./reducer";
 
 enum NameOverlayControlMessages {
   VISIBILITY = "nameOverlay.visibility",
@@ -14,14 +19,23 @@ const handlePlayerFullUpdate = (
   event: AbaTekStreamingEvent,
   dispatch: Dispatch
 ) => {
-  console.log((event as any).payload.player);
+  dispatch(
+    setPlayerFullOverlay({
+      team: (event as any).payload.team,
+      player: (event as any).payload.player,
+    })
+  );
 };
 
 const handleNameOverlayVisibility = (
   event: AbaTekStreamingEvent,
   dispatch: Dispatch
 ) => {
-  console.log((event as any).payload.value);
+  if ((event as any).payload.value) {
+    dispatch(showNameOverlay());
+  } else {
+    dispatch(hideNameOverlay());
+  }
 };
 
 const handleNameOverlayApplicationEvent = (

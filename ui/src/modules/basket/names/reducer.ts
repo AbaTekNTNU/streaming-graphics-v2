@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Player } from "../team/component/TeamPresentationComponent";
 
 export type NamePayload = {
@@ -37,12 +37,37 @@ const initialState: NameState = {
   duration: 5000,
 };
 
+type PlayerFullOverlayRequest = {
+  player: Player;
+  team: "H" | "A";
+};
+
 const reducer = createSlice({
   name: "name",
   initialState,
-  reducers: {},
+  reducers: {
+    showNameOverlay: (state: NameState) => {
+      state.showName = true;
+      return state;
+    },
+    hideNameOverlay: (state: NameState) => {
+      state.showName = false;
+      return state;
+    },
+    setPlayerFullOverlay: (
+      state: NameState,
+      action: PayloadAction<PlayerFullOverlayRequest>
+    ) => {
+      state.playerProfileContext = {
+        profile: action.payload.player,
+        team: action.payload.team,
+      };
+      return state;
+    },
+  },
 });
 
-export const {} = reducer.actions;
+export const { showNameOverlay, hideNameOverlay, setPlayerFullOverlay } =
+  reducer.actions;
 
 export default reducer.reducer;
