@@ -1,6 +1,7 @@
 import { Dispatch } from "redux";
 import { AbaTekStreamingEvent, AbaTekStreamingEventType } from "../../types";
 import { handleFiriLogoEvent } from "./firilogo/events";
+import { handleNameOverlayEvent } from "./names/events";
 import { handleScoreEvent } from "./score/events";
 import { handleSponsorDisplayEvent } from "./sponsors/events";
 import { handleGameEvent } from "./team/events";
@@ -26,6 +27,9 @@ export const handleBasketEvent = (
       break;
     case AbaTekStreamingEventType.SPONSOR_DISPLAY:
       handleSponsorDisplayEvent(event, dispatch);
+      break;
+    case AbaTekStreamingEventType.NAME_OVERLAY_EVENT:
+      handleNameOverlayEvent(event, dispatch);
       break;
   }
 };

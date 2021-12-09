@@ -8,7 +8,7 @@ import { ClockNifEvent, handleClockEvent } from "./eventHandlers/clock";
 import { handleScoreEvent, ScoreNifEvent } from "./eventHandlers/score";
 import { handleFoulSideEffects } from "./sideEffects/foul";
 import { getTeamFromMessage } from "./team";
-import { Correction, TeamsState } from "./types";
+import { Correction, TeamData, TeamsState } from "./types";
 import { correctTime } from "./uiEvents/clock";
 
 const app = express();
@@ -112,6 +112,28 @@ app.post("/message", (req: express.Request, res: express.Response) => {
 app.get("/state", (req: express.Request, res: express.Response) => {
   res.send(appState);
 });
+
+app.get(
+  "/team/:team/player/:id",
+  (req: express.Request, res: express.Response) => {
+    let team: TeamData | null = null;
+    if (req.params.team === "H") {
+      team = appState.teams?.home ?? null;
+    } else {
+      team = appState.teams?.away ?? null;
+    }
+
+    const player = team?.players.find(
+      (player) => player.personId === parseInt(req.params.id)
+    );
+
+    if (!player) {
+      return res.send({ ok: false, norwegianMessage: "Could not find player" });
+    }
+
+    res.send({ ok: true, player });
+  }
+);
 
 app.post("/resetclock", (req: express.Request, res: express.Response) => {
   appState = {

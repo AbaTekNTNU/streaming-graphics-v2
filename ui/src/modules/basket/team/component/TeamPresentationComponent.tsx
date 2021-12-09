@@ -13,6 +13,12 @@ export type Coach = {
   personId: number;
 };
 
+export type PlayerStats = {
+  points: number;
+  assists: number;
+  turnovers: number;
+};
+
 export type Player = {
   firstName: string;
   lastName: string;
@@ -21,6 +27,7 @@ export type Player = {
   isCaptain: boolean;
   personId: number;
   birthDate: String | null;
+  stats: PlayerStats;
 };
 
 export type TeamData = {

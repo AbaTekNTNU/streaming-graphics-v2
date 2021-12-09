@@ -15,6 +15,11 @@ const formatPlayer = (player: NifPlayerData): Player => {
     isCaptain: player.IsCaptain,
     personId: Number(player.Id),
     birthDate: player.Birthday !== null ? getDate(player.Birthday) : null,
+    stats: {
+      points: 0,
+      assists: 0,
+      turnovers: 0,
+    },
   };
 };
 
