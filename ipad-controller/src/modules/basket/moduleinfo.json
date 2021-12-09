@@ -25,6 +25,11 @@
       "type": "game_information",
       "name": "Show team presentation",
       "eventName": "team.information"
+    },
+    {
+      "type": "sponsor_display",
+      "name": "Show sponsors",
+      "eventName": "sponsor.display"
     }
   ]
 }
