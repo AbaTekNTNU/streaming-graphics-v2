@@ -4,6 +4,7 @@ import firiLogoReducer from "../modules/basket/firilogo/reducer";
 import gameReducer from "./../modules/basket/team/reducer";
 import sponsorReducer from "../modules/basket/sponsors/reducer";
 import configReducer from "../modules/basket/basketconfig";
+import nameReducer from "../modules/basket/names/reducer";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     firiLogo: firiLogoReducer,
     sponsors: sponsorReducer,
     game: gameReducer,
+    nameOverlay: nameReducer,
   },
 });
 

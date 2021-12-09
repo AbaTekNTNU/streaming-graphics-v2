@@ -1,5 +1,6 @@
 import React from "react";
 import FiriLogo from "./firilogo";
+import Names from "./names";
 import Score from "./score";
 import Sponsors from "./sponsors";
 import Team from "./team";
@@ -12,6 +13,7 @@ const Basket: React.FC = () => {
     <Score />,
     <TeamPresentation />,
     <Sponsors />,
+    <Names />,
   ];
 
   return <div>{enabledFeatures}</div>;

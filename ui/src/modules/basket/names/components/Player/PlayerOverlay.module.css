@@ -1,0 +1,79 @@
+.container {
+  position: absolute;
+  left: 50%;
+  bottom: 5em;
+  transform: translateX(-50%);
+  height: 200px;
+  min-width: 1000px;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #ffffffc9;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: flex;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.logo {
+  width: 15%;
+  height: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.logo img {
+  max-height: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.text {
+  width: 70%;
+  height: 100%;
+}
+
+.container * {
+  padding: 5px;
+}
+
+.nameContainer {
+  width: 100%;
+  padding-bottom: 0px;
+}
+
+.nameContainer h3 {
+  margin: 0;
+  color: #201d7c;
+  font-size: 30px;
+  text-align: center;
+}
+
+.roleContainer {
+  color: #201d7c;
+  display: flex;
+  justify-content: center;
+  padding-top: 0px;
+}
+
+.roleContainer span {
+  font-size: 15px;
+}
+
+.playerInfoWrapper {
+  margin-top: 2.2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.playerInfoItem {
+  width: fit-content;
+  color: #201d7c;
+}

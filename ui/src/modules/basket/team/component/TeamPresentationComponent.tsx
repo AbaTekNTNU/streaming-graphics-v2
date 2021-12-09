@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import styles from "./TeamPresentationComponent.module.css";
 import { RootState } from "../../../../store/store";
 import { getSimpleLogoBySkin } from "../../firilogo/utils";
+import { getAge } from "../../utils";
 
 const baseUrl = "http://localhost:4000/team";
 
@@ -41,12 +42,6 @@ type TeamPresentationProps = {};
 
 type PlayerProps = {
   player: Player;
-};
-
-const getAge = (birthDate: Date): number => {
-  var ageDifMs = Date.now() - birthDate.getTime();
-  var ageDate = new Date(ageDifMs); // miliseconds from epoch
-  return Math.abs(ageDate.getUTCFullYear() - 1970);
 };
 
 const orderTeamData = (teams: TeamsState): TeamsState => {

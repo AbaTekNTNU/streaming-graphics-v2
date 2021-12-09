@@ -19,14 +19,14 @@ type TeamState = {
 };
 const initialState: TeamState = {
   home: {
-    name: "",
-    logo: "",
+    name: "Nidraos Jets",
+    logo: "/logos/nidaros_jets.png",
     players: [],
     coaches: [],
   },
   away: {
     name: "",
-    logo: "",
+    logo: "/logos/froya.png",
     players: [],
     coaches: [],
   },

@@ -1,0 +1,34 @@
+.container {
+  position: absolute;
+  left: 5em;
+  bottom: 5em;
+  min-width: 300px;
+}
+
+.container * {
+  padding: 5px;
+}
+
+.nameContainer {
+  width: 100%;
+  background-color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.nameContainer h3 {
+  margin: 0;
+  color: #201d7c;
+  font-size: 40px;
+}
+
+.roleContainer {
+  border-bottom-left-radius: 5px;
+  width: fit-content;
+  background-color: #201d7c;
+  color: white;
+}
+
+.roleContainer span {
+  font-size: 20px;
+}
