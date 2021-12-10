@@ -13,7 +13,7 @@ const SponsorsContainer: React.FC<SponsorsContainerProps> = ({ children }) => {
     <div className={styles.container}>
       <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
         <h1 style={{ textAlign: "center" }}>
-          {teamName} vil takke sine sponsorer
+          En stor takk til våre sponsorer fra oss i {teamName}
         </h1>
         {children}
       </div>
