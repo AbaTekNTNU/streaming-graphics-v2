@@ -6,7 +6,7 @@ export type BasketSlice = {
 };
 
 const initialState: BasketSlice = {
-  page: BasketPages.INTERVIEW,
+  page: BasketPages.CONTROL_BUTTONS,
 };
 
 export type GotoPageRequest = {
