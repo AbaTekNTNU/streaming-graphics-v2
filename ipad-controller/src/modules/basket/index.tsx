@@ -1,10 +1,16 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "../../sharedComponents/Button";
+import { RootState } from "../../store";
 import styles from "./Basket.module.css";
 import RemoteToggle from "./components/RemoteToggle";
 import moduleinfo from "./moduleinfo.json";
+import Interview from "./pages/Interview";
+import { gotoPage } from "./reducer";
+import { BasketPages } from "./types";
 
-const Basket = () => {
-  console.log(moduleinfo);
+const ControlPage: React.FC = () => {
+  const dispatch = useDispatch();
 
   const buttons = moduleinfo.eventGroups.map(({ name, eventName, type }) => (
     <RemoteToggle key={name} id={name} eventType={type} eventName={eventName} />
@@ -22,9 +28,25 @@ const Basket = () => {
         >
           {buttons}
         </form>
+        <Button
+          onClick={() => dispatch(gotoPage({ page: BasketPages.INTERVIEW }))}
+        >
+          Go to interview overlays
+        </Button>
       </div>
     </div>
   );
+};
+
+const Basket = () => {
+  const page = useSelector((state: RootState) => state.basket.page);
+
+  switch (page) {
+    case BasketPages.CONTROL_BUTTONS:
+      return <ControlPage />;
+    case BasketPages.INTERVIEW:
+      return <Interview />;
+  }
 };
 
 export default Basket;
