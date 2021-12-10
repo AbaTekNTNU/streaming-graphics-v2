@@ -16,6 +16,17 @@ const setNameOverlay = (
   );
 };
 
+// const setCoachNameOverlay = (
+//   baseUrl: string,
+//   player: any,
+//   selectedTeam: "H" | "A"
+// ) => {
+//   fetch(
+//     `${baseUrl}/basket/name-overlay/team/${selectedTeam}/coach/${player.personId}`,
+//     { method: "POST" }
+//   );
+// };
+
 const hideNameOverlay = (baseUrl: string) => {
   fetch(`${baseUrl}/controller`, {
     method: "POST",
@@ -78,7 +89,7 @@ const Interview: React.FC = () => {
   const dispatch = useDispatch();
   const baseUrl = useSelector((state: RootState) => state.url.value);
   const [team, setTeam] = useState<"H" | "A" | null>(null);
-  const [teamsData, setTeamsData] = useState<any>(null);
+  const [teamsData, setTeamsData] = useState<any>();
 
   useEffect(() => {
     fetch(`${baseUrl}/team`)
