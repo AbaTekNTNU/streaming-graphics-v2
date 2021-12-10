@@ -5,7 +5,7 @@ import SponsorsContainer from "../../shared/SponsorsContainer";
 import nte from "./sponsors/nte.png";
 import norbit from "./sponsors/norbit.png";
 import hufs from "./sponsors/hufs.png";
-import multRenhold from "./sponsors/multi_renhold.jpg";
+import multRenhold from "./sponsors/multi_renhold.png";
 import cola from "./sponsors/cola.png";
 import nidarosSparebank from "./sponsors/nidaros_sparebank.png";
 import weCanDoIt from "./sponsors/we_can_do_it.png";
@@ -32,10 +32,10 @@ const JetsSponsors: React.FC = () => {
     nte,
     weCanDoIt,
     nidarosSparebank,
-    norbit,
+    multRenhold,
     cola,
     hufs,
-    multRenhold,
+    norbit,
     soulsport,
   ];
 

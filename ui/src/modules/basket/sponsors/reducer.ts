@@ -5,7 +5,7 @@ type SponsorState = {
 };
 
 const initialState: SponsorState = {
-  showSponsors: false,
+  showSponsors: true,
 };
 
 const sponsorSlice = createSlice({

@@ -19,15 +19,16 @@
   width: 96%;
   align-items: center;
   justify-content: space-around;
-  height: 33%;
+  height: 30%;
 }
 
 .item {
   display: flex;
-  margin: 5%;
+  margin: 2%;
   width: 100%;
   justify-content: center;
   height: 90%;
+  align-items: center;
 }
 
 .item img {
