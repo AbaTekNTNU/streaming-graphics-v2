@@ -1,0 +1,27 @@
+@import url(../../../sharedComponents/globals.css);
+
+.interviewWrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  color: var(--font-color);
+  font-size: 1.5rem;
+}
+
+.selectTeamsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.teamWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playersWrapper,
+.coachesWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

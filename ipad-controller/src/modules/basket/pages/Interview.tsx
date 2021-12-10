@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
+import styles from "./interview.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../../sharedComponents/Button";
 import { RootState } from "../../../store";
 import { gotoPage } from "../reducer";
 import { BasketPages } from "../types";
 
-const setNameOverlay = (
+// type setNameOverlay = (
+//   baseUrl: string,
+//   player: any,
+//   selectedTeam: "H" | "A"
+// ) => void;
+
+const setNamePlayerOverlay = (
   baseUrl: string,
   player: any,
   selectedTeam: "H" | "A"
@@ -16,16 +23,16 @@ const setNameOverlay = (
   );
 };
 
-// const setCoachNameOverlay = (
-//   baseUrl: string,
-//   player: any,
-//   selectedTeam: "H" | "A"
-// ) => {
-//   fetch(
-//     `${baseUrl}/basket/name-overlay/team/${selectedTeam}/coach/${player.personId}`,
-//     { method: "POST" }
-//   );
-// };
+const setCoachNameOverlay = (
+  baseUrl: string,
+  player: any,
+  selectedTeam: "H" | "A"
+) => {
+  fetch(
+    `${baseUrl}/basket/name-overlay/team/${selectedTeam}/coach/${player.personId}`,
+    { method: "POST" }
+  );
+};
 
 const hideNameOverlay = (baseUrl: string) => {
   fetch(`${baseUrl}/controller`, {
@@ -45,17 +52,37 @@ const hideNameOverlay = (baseUrl: string) => {
 const Team: React.FC<{ team: any; selectedTeam: "H" | "A"; baseUrl: string }> =
   ({ team, selectedTeam, baseUrl }) => {
     return (
-      <div>
-        {team.players.map((player: any) => {
-          return (
-            <Button
-              key={player.personId}
-              onClick={() => setNameOverlay(baseUrl, player, selectedTeam)}
-            >
-              {player.shirtNumber} {player.firstName} {player.lastName}
-            </Button>
-          );
-        })}
+      <div className={styles.teamWrapper}>
+        Players
+        <div className={styles.playersWrapper}>
+          {team.players.map((player: any) => {
+            return (
+              <Button
+                key={player.personId}
+                onClick={() =>
+                  setNamePlayerOverlay(baseUrl, player, selectedTeam)
+                }
+              >
+                {player.shirtNumber} {player.firstName} {player.lastName}
+              </Button>
+            );
+          })}
+        </div>
+        Coaches
+        <div className={styles.coachesWrapper}>
+          {team.coaches.map((coach: any) => {
+            return (
+              <Button
+                key={coach.personId}
+                onClick={() =>
+                  setCoachNameOverlay(baseUrl, coach, selectedTeam)
+                }
+              >
+                {coach.firstName} {coach.lastName}
+              </Button>
+            );
+          })}
+        </div>
       </div>
     );
   };
@@ -100,31 +127,31 @@ const Interview: React.FC = () => {
   if (teamsData === null) {
     return <div>...loading</div>;
   }
+  console.log(teamsData);
 
   return (
-    <div>
-      <div>
-        <Button
-          onClick={() => {
-            if (team === null) {
-              dispatch(gotoPage({ page: BasketPages.CONTROL_BUTTONS }));
-            } else {
-              setTeam(null);
-            }
-          }}
-        >
-          Go back
-        </Button>
-      </div>
-      <div>
-        <Button onClick={() => hideNameOverlay(baseUrl)}>
-          Hide name overlay
-        </Button>
-      </div>
+    <div className={styles.interviewWrapper}>
+      <Button
+        onClick={() => {
+          if (team === null) {
+            dispatch(gotoPage({ page: BasketPages.CONTROL_BUTTONS }));
+          } else {
+            setTeam(null);
+          }
+        }}
+      >
+        Go back
+      </Button>
+      <Button onClick={() => hideNameOverlay(baseUrl)}>
+        Hide name overlay
+      </Button>
       {team === null ? (
-        <div>
-          <SelectTeams setTeam={setTeam} />
-        </div>
+        <>
+          Team:
+          <div className={styles.selectTeamsWrapper}>
+            <SelectTeams setTeam={setTeam} />
+          </div>
+        </>
       ) : (
         <div>
           <Team
