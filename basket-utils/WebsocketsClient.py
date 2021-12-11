@@ -33,8 +33,11 @@ class SubscribeHandler(SubscribeCallback):
 
     def message(self, pubnub, message):
         print("Got message \n")
-        with open("games/%s.dat" % (config.matchId), "a") as f:
-            f.write(json.dumps(message.message) + "\n")
+        try:
+            with open("games/%s.dat" % (config.matchId), "a") as f:
+                f.write(json.dumps(message.message) + "\n")
+        except:
+            print("Error with saving command - still continuing")
         sending = json.dumps(message.message)
         print(message.message)
 
