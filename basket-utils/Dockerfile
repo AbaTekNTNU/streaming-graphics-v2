@@ -10,5 +10,7 @@ COPY config.py config.py
 
 COPY WebsocketsClient.py WebsocketsClient.py
 COPY setup.py setup.py
+COPY setup2.py setup2.py
+COPY domainData domainData
 
 CMD [ "python3", "-u", "WebsocketsClient.py" ]

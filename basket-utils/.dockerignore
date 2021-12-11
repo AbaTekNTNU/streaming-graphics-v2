@@ -1,4 +1,3 @@
 # This file is unessesary as our dockerfile only copies the nessesary data as of now, but it's here if we become lays -- wow thats not lazy at all !!
 /venv
 /__pycache__
-/domainData
