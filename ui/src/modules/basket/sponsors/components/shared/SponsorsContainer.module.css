@@ -19,13 +19,13 @@
   width: 96%;
   align-items: center;
   justify-content: space-around;
-  height: 30%;
+  height: 22%;
 }
 
 .item {
   display: flex;
   margin: 2%;
-  width: 100%;
+  width: 30%;
   justify-content: center;
   height: 90%;
   align-items: center;

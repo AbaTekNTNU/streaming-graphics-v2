@@ -10,6 +10,8 @@ import cola from "./sponsors/cola.png";
 import nidarosSparebank from "./sponsors/nidaros_sparebank.png";
 import weCanDoIt from "./sponsors/we_can_do_it.png";
 import soulsport from "./sponsors/soulsport.png";
+import frost from "./sponsors/frost.svg";
+import ttt from "./sponsors/3t.png";
 
 const groupBy3 = (sponsors: string[]): string[][] => {
   let counter = 0;
@@ -22,8 +24,6 @@ const groupBy3 = (sponsors: string[]): string[][] => {
     }
     counter++;
   });
-  console.log(result);
-  console.log("returning");
   return result;
 };
 
@@ -37,6 +37,8 @@ const JetsSponsors: React.FC = () => {
     hufs,
     norbit,
     soulsport,
+    frost,
+    ttt,
   ];
 
   return (
