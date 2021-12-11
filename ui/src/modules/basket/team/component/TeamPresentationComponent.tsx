@@ -4,6 +4,7 @@ import styles from "./TeamPresentationComponent.module.css";
 import { RootState } from "../../../../store/store";
 import { getSimpleLogoBySkin } from "../../firilogo/utils";
 import { getAge } from "../../utils";
+import { teamsConfig } from "../../teamsConfig";
 
 const baseUrl = "http://localhost:4000/team";
 
@@ -164,8 +165,8 @@ const TeamPresentationComponent: React.FC<TeamPresentationProps> = ({}) => {
         <img className={styles.logo} src={getSimpleLogoBySkin(skin)} />
       </div>
       <div className={styles.midContainer}>
-        <TeamComponent team={teamData.home} name={"Midtbyen"} />
-        <TeamComponent team={teamData.away} name={"Tromsø Strom Ungdom"} />
+        <TeamComponent team={teamData.home} name={teamsConfig.home.name} />
+        <TeamComponent team={teamData.away} name={teamsConfig.away.name} />
       </div>
       <div className={styles.basketNorgeContainer}>
         <span className={styles.basketNorgeText}>#basketnorge</span>

@@ -90,7 +90,7 @@
 
 .playerText {
   display: flex;
-  border-bottom: 1px solid #627cb9;
+  /* border-bottom: 1px solid #627cb9; */
 }
 
 .playerTextInfo {
