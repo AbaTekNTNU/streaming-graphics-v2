@@ -107,8 +107,8 @@ const PlayerOverlay: React.FC = () => {
       player.birthDate !== null
         ? getAge(new Date(player.birthDate as string))
         : null,
-    points: 0,
-    assists: 0,
+    points: player.stats.points,
+    assists: player.stats.assists,
   };
 
   const name = player.firstName + " " + player.lastName;
