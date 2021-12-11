@@ -32,11 +32,11 @@ type NameState = {
 };
 
 const initialState: NameState = {
-  showName: true,
+  showName: false,
   type: NameSkin.SIMPLE,
   payload: {
-    name: "Peter",
-    role: "Utvikler",
+    name: "",
+    role: "",
     points: null,
   },
   profileContext: null,
@@ -51,7 +51,7 @@ type PlayerFullOverlayRequest = {
 type CoachFullOverlayRequest = {
   coach: Coach;
   team: "H" | "A";
-}
+};
 
 const reducer = createSlice({
   name: "name",
@@ -65,15 +65,19 @@ const reducer = createSlice({
       state.showName = false;
       return state;
     },
-    setCoachOverlay: (state: NameState, action: PayloadAction<CoachFullOverlayRequest>) => {
-      const { name } = action.payload.team === "H" ? teamsConfig.home : teamsConfig.away;
+    setCoachOverlay: (
+      state: NameState,
+      action: PayloadAction<CoachFullOverlayRequest>
+    ) => {
+      const { name } =
+        action.payload.team === "H" ? teamsConfig.home : teamsConfig.away;
 
       state.type = NameSkin.SIMPLE;
       state.payload = {
         name: `${action.payload.coach.firstName} ${action.payload.coach.lastName}`,
         role: `Coach, ${name}`,
-        points: null
-      }
+        points: null,
+      };
       return state;
     },
     setPlayerFullOverlay: (
