@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { teamsConfig } from "../teamsConfig";
 
 type Team = {
   name: string;
@@ -38,10 +39,10 @@ const initialState: ScoreState = {
   },
   teams: {
     home: {
-      name: "",
+      name: teamsConfig.home.shortName,
     },
     away: {
-      name: "",
+      name: teamsConfig.away.shortName,
     },
   },
   clock: {
