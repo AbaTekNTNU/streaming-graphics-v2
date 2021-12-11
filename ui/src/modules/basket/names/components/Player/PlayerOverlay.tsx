@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../../store/store";
+import { Player } from "../../../team/component/TeamPresentationComponent";
 import { getAge } from "../../../utils";
 import styles from "./PlayerOverlay.module.css";
 
@@ -71,7 +72,7 @@ const PlayerItem: React.FC<PlayerItemProps> = ({ items, keyItem }) => {
 
 const PlayerOverlay: React.FC = () => {
   const playerContext = useSelector(
-    (state: RootState) => state.nameOverlay.playerProfileContext
+    (state: RootState) => state.nameOverlay.profileContext
   );
 
   const teamData = useSelector((state: RootState) => state.game);
@@ -80,7 +81,7 @@ const PlayerOverlay: React.FC = () => {
     return null;
   }
 
-  const player = playerContext?.profile;
+  const player = playerContext?.profile as Player;
 
   const playerOnTeam = playerContext?.team;
 

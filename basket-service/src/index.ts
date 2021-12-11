@@ -148,6 +148,29 @@ app.get(
   }
 );
 
+app.get(
+  "/team/:team/coach/:id",
+  (req: express.Request, res: express.Response) => {
+    let team: TeamData | null = null;
+    if (req.params.team === "H") {
+      team = appState.teams?.home ?? null;
+    } else {
+      team = appState.teams?.away ?? null;
+    }
+
+    const coach = team?.coaches.find(
+      (player) => player.personId === parseInt(req.params.id)
+    );
+
+    if (!coach) {
+      return res.send({ ok: false, norwegianMessage: "Could not find coach" });
+    }
+
+
+    res.send({ ok: true, coach });
+  }
+);
+
 app.post("/resetclock", (req: express.Request, res: express.Response) => {
   appState = {
     ...appState,
