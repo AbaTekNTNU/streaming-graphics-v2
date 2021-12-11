@@ -10,7 +10,6 @@ const getTeamFromMessage = (message: any): Team => {
 };
 
 const getTeam = (appState: AppState, team: Team): TeamData => {
-  console.log(team);
   if (team === Team.HOME) {
     if (!appState.teams) {
       throw new Error("Home team is undefined");
