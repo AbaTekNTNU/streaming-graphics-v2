@@ -33,7 +33,7 @@ class SubscribeHandler(SubscribeCallback):
 
     def message(self, pubnub, message):
         print("Got message \n")
-        with open("jsonCommands.dat", "a") as f:
+        with open("games/%s.dat" % (config.matchId), "a") as f:
             f.write(json.dumps(message.message) + "\n")
         sending = json.dumps(message.message)
         print(message.message)

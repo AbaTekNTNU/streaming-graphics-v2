@@ -10,6 +10,8 @@ services:
 
   basket-utils:
     build: basket-utils/
+    volumes:
+      - "./basketData/games:/app/games"
 
   bff:
     build: bff/
