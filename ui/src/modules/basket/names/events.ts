@@ -3,6 +3,7 @@ import { AbaTekStreamingEvent } from "../../../types";
 import { AbatekMessage } from "../events";
 import {
   hideNameOverlay,
+  setCoachOverlay,
   setPlayerFullOverlay,
   showNameOverlay,
 } from "./reducer";
@@ -13,6 +14,7 @@ enum NameOverlayControlMessages {
 
 enum NameOverlayApplicationMessage {
   PLAYER_FULL_UPDATE = "nameOverlay.Player.Full.Update",
+  COACH_FULL_UPDATE = "nameOverlay.Coach.Full.Update",
 }
 
 const handlePlayerFullUpdate = (
@@ -23,6 +25,18 @@ const handlePlayerFullUpdate = (
     setPlayerFullOverlay({
       team: (event as any).payload.team,
       player: (event as any).payload.player,
+    })
+  );
+};
+
+const handleCoachFullUpdate = (
+  event: AbaTekStreamingEvent,
+  dispatch: Dispatch
+) => {
+  dispatch(
+    setCoachOverlay({
+      team: (event as any).payload.team,
+      coach: (event as any).payload.coach,
     })
   );
 };
@@ -45,6 +59,9 @@ const handleNameOverlayApplicationEvent = (
   switch ((event as any).payload.event) {
     case NameOverlayApplicationMessage.PLAYER_FULL_UPDATE:
       handlePlayerFullUpdate(event, dispatch);
+      break;
+    case NameOverlayApplicationMessage.COACH_FULL_UPDATE:
+      handleCoachFullUpdate(event, dispatch);
       break;
   }
 };

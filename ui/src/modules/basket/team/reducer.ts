@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { teamsConfig } from "../teamsConfig";
 
 type Coach = {};
 
@@ -19,14 +20,14 @@ type TeamState = {
 };
 const initialState: TeamState = {
   home: {
-    name: "Nidraos Jets",
-    logo: "/logos/nidaros_jets.png",
+    name: teamsConfig.home.name,
+    logo: teamsConfig.home.logo,
     players: [],
     coaches: [],
   },
   away: {
-    name: "",
-    logo: "/logos/froya.png",
+    name: teamsConfig.away.name,
+    logo: teamsConfig.away.logo,
     players: [],
     coaches: [],
   },

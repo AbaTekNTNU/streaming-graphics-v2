@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Player } from "../team/component/TeamPresentationComponent";
+import { Coach, Player } from "../team/component/TeamPresentationComponent";
+import { teamsConfig } from "../teamsConfig";
 
 export type NamePayload = {
   name: string;
@@ -17,12 +18,17 @@ type PlayerProfileContext = {
   profile: Player;
 };
 
+type CoachProfileContext = {
+  team: "H" | "A";
+  profile: Coach;
+};
+
 type NameState = {
   showName: boolean;
   payload: NamePayload;
   duration: number;
   type: NameSkin;
-  playerProfileContext: PlayerProfileContext | null;
+  profileContext: PlayerProfileContext | CoachProfileContext | null;
 };
 
 const initialState: NameState = {
@@ -33,7 +39,7 @@ const initialState: NameState = {
     role: "Utvikler",
     points: null,
   },
-  playerProfileContext: null,
+  profileContext: null,
   duration: 5000,
 };
 
@@ -41,6 +47,11 @@ type PlayerFullOverlayRequest = {
   player: Player;
   team: "H" | "A";
 };
+
+type CoachFullOverlayRequest = {
+  coach: Coach;
+  team: "H" | "A";
+}
 
 const reducer = createSlice({
   name: "name",
@@ -54,8 +65,15 @@ const reducer = createSlice({
       state.showName = false;
       return state;
     },
-    setCoachOverlay: (state: NameState, action: PayloadAction<any>) => {
+    setCoachOverlay: (state: NameState, action: PayloadAction<CoachFullOverlayRequest>) => {
+      const { name } = action.payload.team === "H" ? teamsConfig.home : teamsConfig.away;
+
       state.type = NameSkin.SIMPLE;
+      state.payload = {
+        name: `${action.payload.coach.firstName} ${action.payload.coach.lastName}`,
+        role: `Coach, ${name}`,
+        points: null
+      }
       return state;
     },
     setPlayerFullOverlay: (
@@ -63,7 +81,7 @@ const reducer = createSlice({
       action: PayloadAction<PlayerFullOverlayRequest>
     ) => {
       state.type = NameSkin.PLAYER_FULL;
-      state.playerProfileContext = {
+      state.profileContext = {
         profile: action.payload.player,
         team: action.payload.team,
       };

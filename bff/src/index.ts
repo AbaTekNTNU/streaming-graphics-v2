@@ -82,6 +82,45 @@ app.post(
   }
 );
 
+app.post(
+  "/basket/name-overlay/team/:team/coach/:coachId",
+  async (req: express.Request, res: express.Response) => {
+    const coachStats = await fetch(
+      `http://localhost:8000/team/${req.params.team}/coach/${req.params.coachId}`
+    ).then((r) => r.json());
+
+    if (coachStats.ok) {
+      send(
+        {
+          type: AbatekStreamingEvents.NAME_OVERLAY_EVENT,
+          payload: {
+            type: "application",
+            event: "nameOverlay.Coach.Full.Update",
+            coach: coachStats.coach,
+            team: req.params.team, // H | A
+          },
+        },
+        MessageModule.BAKSET
+      );
+
+      send(
+        {
+          type: AbatekStreamingEvents.NAME_OVERLAY_EVENT,
+          payload: {
+            type: "control",
+            event: "nameOverlay.visibility",
+            value: true,
+          },
+        },
+        MessageModule.BAKSET
+      );
+      res.send({ ok: true });
+    } else {
+      res.send({ ok: false });
+    }
+  }
+);
+
 app.get("/team", async (req: express.Request, res: express.Response) => {
   const result = await fetch("http://localhost:8000/state").then((r) =>
     r.json()

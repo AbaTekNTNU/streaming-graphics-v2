@@ -25,11 +25,11 @@ const setNamePlayerOverlay = (
 
 const setCoachNameOverlay = (
   baseUrl: string,
-  player: any,
+  coach: any,
   selectedTeam: "H" | "A"
 ) => {
   fetch(
-    `${baseUrl}/basket/name-overlay/team/${selectedTeam}/coach/${player.personId}`,
+    `${baseUrl}/basket/name-overlay/team/${selectedTeam}/coach/${coach.personId}`,
     { method: "POST" }
   );
 };
