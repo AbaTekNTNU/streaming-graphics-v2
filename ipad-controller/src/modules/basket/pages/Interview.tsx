@@ -101,6 +101,8 @@ const Interview: React.FC = () => {
     return <div>...loading</div>;
   }
 
+  console.log(teamsData);
+
   return (
     <div>
       <div>

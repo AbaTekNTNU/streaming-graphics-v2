@@ -14,4 +14,6 @@ export enum NifDefaultTypes {
   TEAM = "Team",
   EVENT_ID = "Id",
   EVENT_TYPE = "EventType",
+  PLAYER_ID = "Player",
+  ASSIST = "Assist",
 }

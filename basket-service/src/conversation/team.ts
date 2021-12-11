@@ -1,12 +1,38 @@
 import { AppState } from "..";
 import { NifPlayerData, NifTeamData } from "../nifTypes";
-import { Coach, Player, TeamData, TeamUpdateData } from "../types";
+import { Coach, Player, PlayerStats, TeamData, TeamUpdateData } from "../types";
 
 const getDate = (brithDate: string): Date => {
   return new Date(brithDate);
 };
 
-const formatPlayer = (player: NifPlayerData): Player => {
+const formatPlayer = (appState: AppState, player: NifPlayerData): Player => {
+  const newStats: PlayerStats = {
+    points: 0,
+    assists: 0,
+    turnovers: 0,
+    shotsMade: {
+      1: 0,
+      2: 0,
+      3: 0,
+    },
+    shotsMissed: {
+      1: 0,
+      2: 0,
+      3: 0,
+    },
+  };
+
+  const playerHasStatsAsUndefined = appState.undefinedPlayers.find(
+    (it) => it.personId === player.Id
+  );
+
+  if (playerHasStatsAsUndefined !== undefined) {
+    appState.undefinedPlayers = appState.undefinedPlayers.filter(
+      (it) => it.personId !== playerHasStatsAsUndefined.personId
+    );
+  }
+
   return {
     firstName: player.FirstName,
     lastName: player.LastName,
@@ -15,11 +41,10 @@ const formatPlayer = (player: NifPlayerData): Player => {
     isCaptain: player.IsCaptain,
     personId: Number(player.Id),
     birthDate: player.Birthday !== null ? getDate(player.Birthday) : null,
-    stats: {
-      points: 0,
-      assists: 0,
-      turnovers: 0,
-    },
+    stats:
+      playerHasStatsAsUndefined === undefined
+        ? newStats
+        : playerHasStatsAsUndefined.stats,
   };
 };
 
@@ -31,13 +56,13 @@ const formatCoach = (coach: NifPlayerData): Coach => {
   };
 };
 
-const formatTeam = (teamData: NifTeamData): TeamData => {
+const formatTeam = (appState: AppState, teamData: NifTeamData): TeamData => {
   return {
     coaches: teamData.Players.filter((it) => it.IsCoach).map((it) =>
       formatCoach(it)
     ),
     players: teamData.Players.filter((it) => !it.IsCoach).map((it) =>
-      formatPlayer(it)
+      formatPlayer(appState, it)
     ),
   };
 };
@@ -47,8 +72,8 @@ const formatTeamData = (
   appState: AppState
 ): AppState => {
   console.log(teamData);
-  const homeTeam = formatTeam(teamData.home);
-  const awayTeam = formatTeam(teamData.away);
+  const homeTeam = formatTeam(appState, teamData.home);
+  const awayTeam = formatTeam(appState, teamData.away);
   return { ...appState, teams: { home: homeTeam, away: awayTeam } };
 };
 

@@ -7,6 +7,7 @@ export enum Team {
 
 export enum Correction {
   SCORE = "score",
+  STATS = "stats",
 }
 
 export type TeamUpdateData = {
@@ -24,6 +25,16 @@ export type PlayerStats = {
   points: number;
   assists: number;
   turnovers: number;
+  shotsMade: {
+    1: 0;
+    2: 0;
+    3: 0;
+  };
+  shotsMissed: {
+    1: 0;
+    2: 0;
+    3: 0;
+  };
 };
 
 export type Player = {
@@ -45,4 +56,9 @@ export type TeamData = {
 export type TeamsState = {
   home: TeamData;
   away: TeamData;
+};
+
+export type UndefinedPlayer = {
+  personId: number;
+  stats: PlayerStats;
 };

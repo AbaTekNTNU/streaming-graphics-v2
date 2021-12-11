@@ -1,14 +1,17 @@
 import express from "express";
 import * as process from "process";
+import { getAssistByMessage } from "./assist";
 import { formatTeamData } from "./conversation/team";
 import { correctScore } from "./corrections/score";
+import { correctStats } from "./corrections/stats";
 import { handleMessageGlobalSideEffects } from "./effects";
 import { NifDefaultTypes } from "./event";
 import { ClockNifEvent, handleClockEvent } from "./eventHandlers/clock";
 import { handleScoreEvent, ScoreNifEvent } from "./eventHandlers/score";
+import { getPlayerIdFromMessage } from "./player";
 import { handleFoulSideEffects } from "./sideEffects/foul";
 import { getTeamFromMessage } from "./team";
-import { Correction, TeamData, TeamsState } from "./types";
+import { Correction, TeamData, TeamsState, UndefinedPlayer } from "./types";
 import { correctTime } from "./uiEvents/clock";
 
 const app = express();
@@ -39,6 +42,7 @@ export type AppState = {
     lastKownSecondsRemaining: number;
   };
   teams: TeamsState | null;
+  undefinedPlayers: UndefinedPlayer[];
 };
 
 let appState: AppState = {
@@ -50,7 +54,11 @@ let appState: AppState = {
     period: "1",
     lastKownSecondsRemaining: 600,
   },
-  teams: null,
+  teams: {
+    home: { players: [], coaches: [] },
+    away: { players: [], coaches: [] },
+  },
+  undefinedPlayers: [],
 };
 
 const alreadyHandledEvents: number[] = [];
@@ -59,6 +67,9 @@ app.post("/correct", (req: express.Request, res: express.Response) => {
   switch (req.body.type) {
     case Correction.SCORE:
       appState = correctScore(appState, req.body);
+      break;
+    case Correction.STATS:
+      appState = correctStats(appState, req.body);
       break;
   }
   res.send({ result: "ok" });
@@ -95,8 +106,10 @@ app.post("/message", (req: express.Request, res: express.Response) => {
       case EVENT_SHOT:
         [appState, eventResult] = handleScoreEvent(
           appState,
+          getPlayerIdFromMessage(message),
           getTeamFromMessage(message),
-          message[ScoreNifEvent.SHOT_RESULT]
+          message[ScoreNifEvent.SHOT_RESULT],
+          getAssistByMessage(message)
         );
         break;
       case EVENT_FOUL:
