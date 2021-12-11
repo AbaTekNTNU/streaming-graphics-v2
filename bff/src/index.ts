@@ -9,8 +9,15 @@ import {
   MessageModule,
   MessageRequest,
 } from "./types";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const port = 4000;
+
+const basketUrl: string = process.env.BASKET_URL ?? "http://localhost:8000";
+
+console.log("Using basket service url: " + basketUrl);
 
 const app = express();
 
@@ -47,7 +54,7 @@ app.post(
   "/basket/name-overlay/team/:team/player/:playerId",
   async (req: express.Request, res: express.Response) => {
     const playerStats = await fetch(
-      `http://localhost:8000/team/${req.params.team}/player/${req.params.playerId}`
+      `${basketUrl}/team/${req.params.team}/player/${req.params.playerId}`
     ).then((r) => r.json());
 
     if (playerStats.ok) {
@@ -86,7 +93,7 @@ app.post(
   "/basket/name-overlay/team/:team/coach/:coachId",
   async (req: express.Request, res: express.Response) => {
     const coachStats = await fetch(
-      `http://localhost:8000/team/${req.params.team}/coach/${req.params.coachId}`
+      `${basketUrl}/team/${req.params.team}/coach/${req.params.coachId}`
     ).then((r) => r.json());
 
     if (coachStats.ok) {
@@ -122,9 +129,7 @@ app.post(
 );
 
 app.get("/team", async (req: express.Request, res: express.Response) => {
-  const result = await fetch("http://localhost:8000/state").then((r) =>
-    r.json()
-  );
+  const result = await fetch(`${basketUrl}/state`).then((r) => r.json());
   res.send(result);
 });
 

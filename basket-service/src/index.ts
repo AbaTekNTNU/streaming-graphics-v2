@@ -166,7 +166,6 @@ app.get(
       return res.send({ ok: false, norwegianMessage: "Could not find coach" });
     }
 
-
     res.send({ ok: true, coach });
   }
 );

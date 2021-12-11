@@ -5,6 +5,8 @@ services:
     build: basket-service/
     ports: 
      - "8000:8000"
+    environment:
+      - "BFF_URL=http://bff:4000"
 
   basket-utils:
     build: basket-utils/
@@ -13,6 +15,9 @@ services:
     build: bff/
     ports: 
       - "4000:4000"
+    environment:
+      - "BASKET_URL=http://basket-service:8000"
+
   
   ipad-controller:
     build: ipad-controller/
