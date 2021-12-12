@@ -1,6 +1,7 @@
 import React, { FormEventHandler, ReactNode } from "react";
 import styles from "./RemoteToggle.module.css";
-import moduleinfo from "../moduleinfo.json";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 type CheckBoxButtonProps = {
   children?: ReactNode;
@@ -18,6 +19,8 @@ const RemoteCheckboxButton = ({
   // Decide name/id of toggle based on which property is defined
   id = id ? id : String.apply(children);
   children = children ? children : id;
+
+  const url = useSelector((state: RootState) => state.url);
 
   // Perform post with the new event. endpoint is defined in moduleinfo.json
   const handleToggleEvent: FormEventHandler<HTMLInputElement> = (event) => {
@@ -39,7 +42,7 @@ const RemoteCheckboxButton = ({
       }),
     };
 
-    fetch(moduleinfo.url, requestOptions)
+    fetch(url.value, requestOptions)
       .then((response) => {
         console.log(response);
         return response.json();

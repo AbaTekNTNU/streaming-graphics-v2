@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import moduleinfo from "../modules/basket/moduleinfo.json"
 
 /*
 Slice containing url for basket backend.
@@ -9,7 +10,7 @@ export interface UrlState {
 }
 
 const initialState: UrlState = {
-  value: "http://localhost:4000",
+  value: moduleinfo.url,
 };
 
 export const urlSlice = createSlice({

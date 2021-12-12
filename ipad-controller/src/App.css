@@ -1,5 +1,8 @@
+@import url(./sharedComponents/globals.css);
+
 .App {
   text-align: center;
+  color: var(--font-color);
 }
 
 .App-logo {
