@@ -1,0 +1,22 @@
+.urlWrapper {
+  margin: 5px;
+}
+
+.urlWrapper label input {
+  width: 300px;
+}
+
+.endpointsWrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.endpoints {
+  display: flex;
+}
+
+.endpoint button {
+  padding: 3px;
+  margin: 5px;
+}
