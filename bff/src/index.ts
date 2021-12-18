@@ -92,9 +92,12 @@ app.post(
 );
 
 app.post("/api/sound", async (req: express.Request, res: express.Response) => {
+  console.log("Sending sound data");
+  console.log(req.body);
   await fetch(`${soundControlUri}/sound`, {
+    method: "POST",
     headers: { "content-type": "application/json" },
-    body: req.body,
+    body: JSON.stringify(req.body),
   });
   res.send({ ok: true });
 });

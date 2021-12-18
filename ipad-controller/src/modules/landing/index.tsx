@@ -44,6 +44,9 @@ const Landing = () => {
         <div>
           <Link to={"/basket"}>Go to basket</Link>
         </div>
+        <div>
+          <Link to={"/audio"}>Go to lydkontroll</Link>
+        </div>
       </div>
     </div>
   );
