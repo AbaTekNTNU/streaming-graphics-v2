@@ -16,6 +16,8 @@ dotenv.config();
 const port = 4000;
 
 const basketUrl: string = process.env.BASKET_URL ?? "http://localhost:8000";
+const soundControlUri: string =
+  process.env.SOUND_CONTROL_URL ?? "http://localhost:5050";
 
 console.log("Using basket service url: " + basketUrl);
 
@@ -88,6 +90,14 @@ app.post(
     }
   }
 );
+
+app.post("/api/sound", async (req: express.Request, res: express.Response) => {
+  await fetch(`${soundControlUri}/sound`, {
+    headers: { "content-type": "application/json" },
+    body: req.body,
+  });
+  res.send({ ok: true });
+});
 
 app.post(
   "/basket/name-overlay/team/:team/coach/:coachId",
