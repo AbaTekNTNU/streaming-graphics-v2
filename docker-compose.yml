@@ -30,3 +30,8 @@ services:
     build: ui/
     ports: 
       - "3000:80"
+
+  sound-control:
+    image: sound-control-backend
+    ports:
+     - "5000:5050"
