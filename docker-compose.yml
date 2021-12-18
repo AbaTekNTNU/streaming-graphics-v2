@@ -19,6 +19,7 @@ services:
       - "4000:4000"
     environment:
       - "BASKET_URL=http://basket-service:8000"
+      - "SOUND_CONTROL_URI=http://sound-control:5050"
 
   
   ipad-controller:
@@ -33,5 +34,3 @@ services:
 
   sound-control:
     image: sound-control-backend
-    ports:
-     - "5000:5050"
