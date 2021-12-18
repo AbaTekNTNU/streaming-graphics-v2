@@ -8,8 +8,12 @@ export interface UrlState {
   value: string;
 }
 
+const getInitialValue = (): string => {
+  return `http://${window.location.hostname}:4000`;
+};
+
 const initialState: UrlState = {
-  value: "http://localhost:4000",
+  value: getInitialValue(),
 };
 
 export const urlSlice = createSlice({
