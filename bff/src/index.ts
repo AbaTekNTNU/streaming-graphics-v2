@@ -17,7 +17,7 @@ const port = 4000;
 
 const basketUrl: string = process.env.BASKET_URL ?? "http://localhost:8000";
 const soundControlUri: string =
-  process.env.SOUND_CONTROL_URL ?? "http://localhost:5050";
+  process.env.SOUND_CONTROL_URI ?? "http://localhost:5050";
 
 console.log("Using basket service url: " + basketUrl);
 
