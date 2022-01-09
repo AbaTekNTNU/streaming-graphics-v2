@@ -30,6 +30,11 @@
       "type": "sponsor_display",
       "name": "Show sponsors",
       "eventName": "sponsor.display"
+    },
+    {
+      "type": "score",
+      "name": "Show info about last score",
+      "eventName": "last_score_visibility"
     }
   ]
 }

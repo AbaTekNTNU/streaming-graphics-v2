@@ -4,9 +4,12 @@ import { AbatekMessage } from "../events";
 import {
   correctTime,
   hideClock,
+  hideLastScore,
   hideScore,
+  setLastScore,
   setScore,
   showClock,
+  showLastScore,
   showScore,
   startClock,
   stopClock,
@@ -15,6 +18,7 @@ import {
 enum ScoreEventControlMessages {
   SCORE_VISIBILITY = "score_visibility",
   CLOCK_VISIBILITY = "clock_visibility",
+  LAST_SCORE_VISIBILITY = "last_score_visibility",
 }
 
 enum ScoreEventApplicationMessage {
@@ -22,6 +26,7 @@ enum ScoreEventApplicationMessage {
   STOP_CLOCK = "clock.stop",
   UPDATE_SCORE = "scoreUpdate",
   CLOCK_CORRECITON = "clockCorrection",
+  LAST_SCORE_EVENT = "lastScoreUpdate",
 }
 
 // enum ScoreEventControlPayload {
@@ -51,6 +56,17 @@ const handleClockVisibility = (
   }
 };
 
+const handleLastScoreVisibility = (
+  event: AbaTekStreamingEvent,
+  dispatch: Dispatch
+) => {
+  if ((event as any).payload.value) {
+    dispatch(showLastScore());
+  } else {
+    dispatch(hideLastScore());
+  }
+};
+
 const handleScoreUpdateEvent = (
   event: AbaTekStreamingEvent,
   dispatch: Dispatch
@@ -59,6 +75,20 @@ const handleScoreUpdateEvent = (
     setScore({
       home: (event as any).payload.home,
       away: (event as any).payload.away,
+    })
+  );
+};
+
+const handleLastScoreUpdateEvent = (
+  event: AbaTekStreamingEvent,
+  dispatch: Dispatch
+) => {
+  const paylaod = (event as any).payload;
+  dispatch(
+    setLastScore({
+      name: paylaod.name,
+      points: paylaod.points,
+      team: paylaod.team,
     })
   );
 };
@@ -83,6 +113,10 @@ const handleScoreApplicationMessage = (
     case ScoreEventApplicationMessage.UPDATE_SCORE:
       handleScoreUpdateEvent(event, dispatch);
       break;
+
+    case ScoreEventApplicationMessage.LAST_SCORE_EVENT:
+      handleLastScoreUpdateEvent(event, dispatch);
+      break;
     case ScoreEventApplicationMessage.CLOCK_CORRECITON:
       handleClockCorrection(event, dispatch);
       break;
@@ -105,6 +139,10 @@ export const handleScoreControllMessage = (
       break;
     case ScoreEventControlMessages.CLOCK_VISIBILITY:
       handleClockVisibility(event, dispatch);
+      break;
+
+    case ScoreEventControlMessages.LAST_SCORE_VISIBILITY:
+      handleLastScoreVisibility(event, dispatch);
       break;
   }
 };

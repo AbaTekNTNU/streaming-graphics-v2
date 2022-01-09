@@ -4,6 +4,14 @@ import { teamsConfig } from "../teamsConfig";
 type Team = {
   name: string;
 };
+
+export type LastScore = {
+  name: string;
+  points: number;
+  duration: 5000 | 3000;
+  timestampRecieved: number | null;
+  team: "H" | "A" | null;
+};
 export interface ScoreState {
   score: {
     home: number;
@@ -20,6 +28,8 @@ export interface ScoreState {
   };
   scoreVisible: boolean;
   clockVisible: boolean;
+  showLastScore: boolean;
+  lastScore: LastScore;
 }
 
 export type SetScoreRequest = {
@@ -30,6 +40,12 @@ export type SetScoreRequest = {
 export type ClockCorrectionRequest = {
   secondsRemaining: number;
   period: string;
+};
+
+export type SetLastScoreRequest = {
+  name: string;
+  points: number;
+  team: "H" | "A" | null;
 };
 
 const initialState: ScoreState = {
@@ -50,8 +66,16 @@ const initialState: ScoreState = {
     secondsRemaining: 600,
     running: false,
   },
-  scoreVisible: false,
+  scoreVisible: true,
   clockVisible: true,
+  showLastScore: true,
+  lastScore: {
+    name: "",
+    duration: 5000,
+    points: 0,
+    timestampRecieved: null,
+    team: null,
+  },
 };
 
 const scoreSlice = createSlice({
@@ -98,6 +122,27 @@ const scoreSlice = createSlice({
       state.score = action.payload;
       return state;
     },
+    setLastScore: (
+      state: ScoreState,
+      action: PayloadAction<SetLastScoreRequest>
+    ) => {
+      state.lastScore = {
+        name: action.payload.name,
+        points: action.payload.points,
+        timestampRecieved: new Date().getTime(),
+        team: action.payload.team,
+        duration: 3000,
+      };
+      return state;
+    },
+    hideLastScore: (state: ScoreState) => {
+      state.showLastScore = false;
+      return state;
+    },
+    showLastScore: (state: ScoreState) => {
+      state.showLastScore = true;
+      return state;
+    },
   },
 });
 
@@ -111,6 +156,9 @@ export const {
   startClock,
   hideClock,
   showClock,
+  setLastScore,
+  hideLastScore,
+  showLastScore,
 } = scoreSlice.actions;
 
 export default scoreSlice.reducer;

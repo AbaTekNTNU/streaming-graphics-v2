@@ -1,7 +1,10 @@
 import { AppState } from "..";
 import { EventResult, InternalEvent } from "../event";
 import { Team, TeamData } from "../types";
-import { sendUpdateScoreEvent } from "../uiEvents/score";
+import {
+  sendLastScoreUpdateEvent,
+  sendUpdateScoreEvent,
+} from "../uiEvents/score";
 import { handleAssistsEvent } from "./assits";
 
 enum ScoreEvent {
@@ -78,6 +81,12 @@ const handleInduvidualScoreIncrement = (
   } else {
     player.stats.points += increment;
     player.stats.shotsMade[increment] += 1;
+
+    sendLastScoreUpdateEvent(
+      `${player.firstName} ${player.lastName}`,
+      increment,
+      team
+    );
   }
 
   return appState;

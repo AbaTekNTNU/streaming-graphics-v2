@@ -1,0 +1,24 @@
+.wrapper {
+  position: absolute;
+  left: 50%;
+  bottom: 2em;
+  transform: translateX(-50%);
+  background-color: #ffffffc0;
+  padding: 1em;
+  padding-right: 5em;
+  padding-left: 5em;
+}
+
+.text {
+  text-align: center;
+}
+
+.nameText {
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+
+.pointsText {
+  margin: 0;
+  margin-bottom: 0.5em;
+}

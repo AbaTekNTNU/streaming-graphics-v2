@@ -1,5 +1,6 @@
 import { AppState } from "..";
 import { sendMessage } from "../dto/dtoEvents";
+import { Team, TeamData } from "../types";
 
 const sendUpdateScoreEvent = (appState: AppState) => {
   sendMessage("score", {
@@ -10,4 +11,14 @@ const sendUpdateScoreEvent = (appState: AppState) => {
   });
 };
 
-export { sendUpdateScoreEvent };
+const sendLastScoreUpdateEvent = (name: string, points: number, team: Team) => {
+  sendMessage("score", {
+    type: "application",
+    event: "lastScoreUpdate",
+    name: name,
+    points: points,
+    team: team,
+  });
+};
+
+export { sendUpdateScoreEvent, sendLastScoreUpdateEvent };

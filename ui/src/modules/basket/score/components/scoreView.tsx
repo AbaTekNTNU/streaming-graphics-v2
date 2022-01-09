@@ -5,6 +5,7 @@ import { BasketSkin } from "../../basketconfig";
 import { FiriLogoGender } from "../../firilogo/reducer";
 import Score from "./FIRI/Score";
 import NtnuiScore from "./NTNUI/NtnuiScore";
+import ScoreDetailsPopup from "./ScoreDetailsPopup";
 
 type InnerScoreProps = {
   skin: BasketSkin;
@@ -84,14 +85,19 @@ const ScoreView: React.FC = () => {
 
   const scoreApplication = (
     <div>
-      {
-        <InnerScore
-          skin={skin}
-          showClock={showClock}
-          currentPeriod={currentPeriod}
-          scoreState={scoreState}
-        />
-      }
+      <div>
+        {
+          <InnerScore
+            skin={skin}
+            showClock={showClock}
+            currentPeriod={currentPeriod}
+            scoreState={scoreState}
+          />
+        }
+      </div>
+      <div>
+        <ScoreDetailsPopup />
+      </div>
     </div>
   );
 
