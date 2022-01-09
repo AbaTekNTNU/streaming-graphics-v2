@@ -68,12 +68,12 @@ app.post("/correct", (req: express.Request, res: express.Response) => {
   switch (req.body.type) {
     case Correction.SCORE:
       appState = correctScore(appState, req.body);
+      sendUpdateScoreEvent(appState);
       break;
     case Correction.STATS:
       appState = correctStats(appState, req.body);
       break;
   }
-  sendUpdateScoreEvent(appState);
   res.send({ result: "ok" });
 });
 
