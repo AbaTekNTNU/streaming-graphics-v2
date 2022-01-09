@@ -13,6 +13,7 @@ import { handleFoulSideEffects } from "./sideEffects/foul";
 import { getTeamFromMessage } from "./team";
 import { Correction, TeamData, TeamsState, UndefinedPlayer } from "./types";
 import { correctTime } from "./uiEvents/clock";
+import { sendUpdateScoreEvent } from "./uiEvents/score";
 
 const app = express();
 const port = process.env.port ?? 8000;
@@ -72,6 +73,7 @@ app.post("/correct", (req: express.Request, res: express.Response) => {
       appState = correctStats(appState, req.body);
       break;
   }
+  sendUpdateScoreEvent(appState);
   res.send({ result: "ok" });
 });
 
