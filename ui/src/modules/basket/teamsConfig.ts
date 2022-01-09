@@ -5,9 +5,9 @@ const teamsConfig = {
     logo: "/logos/nidaros_jets.png",
   },
   away: {
-    name: "Tromsø storm",
-    shortName: "TRO",
-    logo: "/logos/tromso_menn.png",
+    name: "Bærum Basket",
+    shortName: "BÆR",
+    logo: "/logos/bearum.png",
   },
 };
 
