@@ -6,7 +6,9 @@ import { getSimpleLogoBySkin } from "../../firilogo/utils";
 import { getAge } from "../../utils";
 import { teamsConfig } from "../../teamsConfig";
 
-const baseUrl = "http://localhost:4000/team";
+const uri = window.location.hostname;
+
+const baseUrl = `http://${uri}:4000/team`;
 
 export type Coach = {
   firstName: string;

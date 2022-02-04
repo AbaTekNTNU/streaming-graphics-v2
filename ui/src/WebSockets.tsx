@@ -3,7 +3,9 @@ import { useDispatch } from "react-redux";
 import useWebSocket from "react-use-websocket";
 import { handleEvent } from "./events/handler";
 
-const wsUrl = "ws://localhost:4000";
+const uri = window.location.hostname;
+
+const wsUrl = `ws://${uri}:4000`;
 
 const WebSockets: React.FC = () => {
   const dispatch = useDispatch();

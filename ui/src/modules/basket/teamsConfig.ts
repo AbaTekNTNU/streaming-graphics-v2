@@ -1,13 +1,13 @@
 const teamsConfig = {
   home: {
-    name: "Nidaros Jets",
-    shortName: "NID",
-    logo: "/logos/nidaros_jets.png",
+    name: "Midtbyen Basket",
+    shortName: "MID",
+    logo: "/logos/midtbyen.png",
   },
   away: {
-    name: "Bærum Basket",
-    shortName: "BÆR",
-    logo: "/logos/bearum.png",
+    name: "Ulriken Eagles",
+    shortName: "ULR",
+    logo: "/logos/ulrikken.png",
   },
 };
 
