@@ -12,6 +12,7 @@ import SponsorRow from "../../shared/SponsorRow";
 import SponsorItem from "../../shared/SponsorItem";
 import dnb from "./sponsors/dnb_eiendom.png";
 import vaernes from "./sponsors/VaernesPanorama.png";
+import soulsport from "./sponsors/soulsport.png";
 
 const groupBy3 = (sponsors: string[]): string[][] => {
   let counter = 0;
@@ -34,11 +35,12 @@ const MidtbyenSponsors: React.FC = () => {
     hufs,
     grano,
     dnb,
-    snm,
+    soulsport,
     gareco,
     dance_studio,
     frost,
     vaernes,
+    snm,
   ];
   return (
     <SponsorsContainer>
