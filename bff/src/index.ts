@@ -91,6 +91,18 @@ app.post(
   }
 );
 
+app.post(
+  "/basket/correct-score-relative",
+  async (req: express.Request, res: express.Response) => {
+    const result = await fetch(`${basketUrl}/correct-score-relative`, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(req.body),
+    }).then((r) => r.json());
+    res.send(result);
+  }
+);
+
 app.post("/api/sound", async (req: express.Request, res: express.Response) => {
   console.log("Sending sound data");
   console.log(req.body);

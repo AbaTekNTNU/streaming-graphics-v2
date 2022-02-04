@@ -11,7 +11,13 @@ import { handleScoreEvent, ScoreNifEvent } from "./eventHandlers/score";
 import { getPlayerIdFromMessage } from "./player";
 import { handleFoulSideEffects } from "./sideEffects/foul";
 import { getTeamFromMessage } from "./team";
-import { Correction, TeamData, TeamsState, UndefinedPlayer } from "./types";
+import {
+  Correction,
+  Team,
+  TeamData,
+  TeamsState,
+  UndefinedPlayer,
+} from "./types";
 import { correctTime } from "./uiEvents/clock";
 import { sendUpdateScoreEvent } from "./uiEvents/score";
 
@@ -76,6 +82,32 @@ app.post("/correct", (req: express.Request, res: express.Response) => {
   }
   res.send({ result: "ok" });
 });
+
+app.post(
+  "/correct-score-relative",
+  (req: express.Request, res: express.Response) => {
+    const updateScoreAmount = req.body.amount;
+    const team = req.body.team;
+    let error = undefined;
+    switch (team) {
+      case Team.HOME:
+        appState.score.home = appState.score.home + updateScoreAmount;
+        break;
+      case Team.AWAY:
+        appState.score.away = appState.score.away + updateScoreAmount;
+        break;
+      default:
+        error = { err: "Could not find team" };
+        break;
+    }
+    if (error !== undefined) {
+      res.status(400).send(error);
+    } else {
+      sendUpdateScoreEvent(appState);
+      res.send({ ok: true });
+    }
+  }
+);
 
 app.post("/team", (req: express.Request, res: express.Response) => {
   console.log("got team event");
