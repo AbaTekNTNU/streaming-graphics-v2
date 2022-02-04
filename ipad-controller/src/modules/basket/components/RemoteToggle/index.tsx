@@ -2,7 +2,7 @@ import React, { FormEventHandler, ReactNode } from "react";
 import styles from "./RemoteToggle.module.css";
 //import moduleinfo from "../moduleinfo.json";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../store";
+import { RootState } from "../../../../store";
 
 type CheckBoxButtonProps = {
   children?: ReactNode;

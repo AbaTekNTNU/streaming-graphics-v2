@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "../../sharedComponents/Button";
 import { RootState } from "../../store";
 import styles from "./Basket.module.css";
+import CorrectBasketScoreButton from "./components/CorrectBasketScoreButton";
 import RemoteToggle from "./components/RemoteToggle";
 import moduleinfo from "./moduleinfo.json";
 import Interview from "./pages/Interview";
@@ -17,22 +18,25 @@ const ControlPage: React.FC = () => {
   ));
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.endpointText}>/basket</div>
-      <div className={styles.formWrapper}>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-          className={styles.form}
-        >
-          {buttons}
-        </form>
-        <Button
-          onClick={() => dispatch(gotoPage({ page: BasketPages.INTERVIEW }))}
-        >
-          Go to interview overlays
-        </Button>
+    <div>
+      <CorrectBasketScoreButton />
+      <div className={styles.wrapper}>
+        <div className={styles.endpointText}>/basket</div>
+        <div className={styles.formWrapper}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+            className={styles.form}
+          >
+            {buttons}
+          </form>
+          <Button
+            onClick={() => dispatch(gotoPage({ page: BasketPages.INTERVIEW }))}
+          >
+            Go to interview overlays
+          </Button>
+        </div>
       </div>
     </div>
   );
