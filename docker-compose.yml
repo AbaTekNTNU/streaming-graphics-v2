@@ -32,5 +32,5 @@ services:
     ports: 
       - "3000:80"
 
-  sound-control:
-    image: sound-control-backend
+#  sound-control:
+#    image: sound-control-backend
