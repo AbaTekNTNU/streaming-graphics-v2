@@ -10,13 +10,13 @@ type BasketConfig = {
   skin: BasketSkin;
 };
 
-const config: BasketConfig = {
-  skin: BasketSkin.FIRI_WOMEN,
+const initialState: BasketConfig = {
+  skin: BasketSkin.FIRI_MEN,
 };
 
 const configReducer = createSlice({
   name: "config",
-  initialState: config,
+  initialState: initialState,
   reducers: {},
 });
 
