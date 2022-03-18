@@ -5,9 +5,9 @@ const teamsConfig = {
     logo: "/logos/midtbyen.png",
   },
   away: {
-    name: "Bærum Basket",
-    shortName: "BÆR",
-    logo: "/logos/bearum.png",
+    name: "Ullern Basket",
+    shortName: "ULL",
+    logo: "/logos/ullern.png",
   },
 };
 
